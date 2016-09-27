@@ -1,11 +1,3 @@
-import angular from 'angular';
-<%_ if(filters.ngroute) { _%>
-const ngRoute = require('angular-route');<% } _%>
-<%_ if(filters.uirouter) { _%>
-import uiRouter from 'angular-ui-router';<% } _%>
-
-import routing from './main.routes';
-
 export class MainController {
   $http;
   <%_ if(filters.socketio) { -%>
@@ -43,16 +35,3 @@ export class MainController {
     this.$http.delete('/api/things/' + thing._id);
   }<% } %>
 }
-
-export default angular.module('<%= scriptAppName %>.main', [
-  <%_ if(filters.ngroute) { _%>
-  ngRoute<% } _%>
-  <%_ if(filters.uirouter) { _%>
-  uiRouter<% } _%>
-])
-    .config(routing)
-    .component('main', {
-      template: require('./main.<%= templateExt %>'),
-      controller: MainController
-    })
-    .name;
